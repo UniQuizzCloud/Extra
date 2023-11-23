@@ -5,37 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multi URL Redirector</title>
     <script>
-        // Define your URL configurations
-        const urlConfig = {
-            'eggy-car': 'https://eggy-car.ozrox.co.uk',
-            'ovo': 'https://ovo2.ozrox.co.uk',
-            'flappy-bird': 'https://cdn.nate-games.xyz/flappybird/',
-            // Add more URLs as needed
-        };
+        function redirectToOriginalUrl(path) {
+            const urlConfig = {
+                'eggy-car': 'eggy-car.html',
+                'ovo': 'ovo.html',
+                // Add more URLs as needed
+            };
 
-        // Redirect function based on the path
-        function redirectToOriginalUrl() {
-            // Get the path from the URL
-            const path = window.location.pathname.replace(/^\/|\/$/g, '');
-
-            // Check if the path exists in the configuration
             if (urlConfig.hasOwnProperty(path)) {
-                // Redirect to the corresponding URL
                 window.location.replace(urlConfig[path]);
             } else {
-                // Redirect to a default URL or show an error message
-                window.location.replace('https://extra.ozrox.co.uk');
-                // Alternatively, you can display an error message on the page
-                // document.getElementById('error-message').innerText = 'Invalid URL path';
+                window.location.replace('extra.html');
             }
         }
 
-        // Call the redirect function when the page loads
-        window.onload = redirectToOriginalUrl;
+        window.onload = function () {
+            const path = window.location.pathname.replace(/^\/|\/$/g, '');
+            redirectToOriginalUrl(path);
+        };
     </script>
 </head>
 <body>
-    <!-- You can add an error message element if needed -->
-    <!-- <p id="error-message"></p> -->
 </body>
 </html>
